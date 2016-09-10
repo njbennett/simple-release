@@ -1,0 +1,6 @@
+---
+name: netcat
+templates:
+  ctl.erb: bin/ctl
+
+packages:

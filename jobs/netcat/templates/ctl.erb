@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -eu
+
+run_dir="/var/vcap/sys/run/netcat"
+pidfile="${run_dir}/pid"
+
+case $1 in
+
+  start)
+    mkdir -p "${run_dir}"
+    chown -R vcap:vcap "${run_dir}"
+
+    echo $$ > "${pidfile}"
+
+    nc -l 9000
+
+    ;;
+
+  stop)
+    kill -9 "$(cat "${pidfile}")"
+    rm -f "${pidfile}"
+
+    ;;
+
+  *)
+    echo "Usage: ct {start|stop}" ;;
+
+esac

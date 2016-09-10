@@ -1,0 +1,5 @@
+check process netcat
+  with pidfile /var/vcap/sys/run/netcat/pid
+  start program "/var/vcap/jobs/netcat/ctl start"
+  stop program "/var/vcap/jobs/netcat/ct stop"
+  group vcap
